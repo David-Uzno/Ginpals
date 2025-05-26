@@ -1,62 +1,92 @@
 using UnityEngine;
+using UnityEngine.AI;
+using Debug = System.Diagnostics.Debug;
 
 public class StateMachine : MonoBehaviour
 {
-    Argenimal[] _enemy_team;
-    enum States
+    private Argenimal[] _enemyTeam;
+    private NavMeshAgent _agent;
+    public enum States
     {
-        IDLE_STATE,
-        STALKING_STATE,
-        ATTACK_STATE,
+        IdleState,
+        StalkingState,
+        AttackState,
     };
-    bool stunned = false;
-    bool dead = false;
 
-    States current_state = States.IDLE_STATE;
+    private bool _stunned = false;
+    private bool _dead = false;
 
-    float stunned_timer;
+    public States _currentState = States.IdleState;
+    public float minRange = 0.1f;
 
-    const float MAX_STUNNED_TIMER = 3.0f;
+    private float _stunnedTimer;
 
-    // Update is called once per frame
-    void Update()
+    private const float MaxStunnedTimer = 3.0f;
+    
+    public void Setup(Argenimal[] enemyTeam, NavMeshAgent agent)
     {
-        if (dead) { return; }
-        if (stunned) { HandleStun(); }
-        switch (current_state)
+        _enemyTeam = enemyTeam;
+        _agent = agent;
+    }
+
+    public void ProcessStates()
+    {
+        if (_dead) { return; }
+        if (_stunned) { HandleStun(); }
+        switch (_currentState)
         {
-            case States.IDLE_STATE:
+            case States.IdleState:
+                _currentState = States.StalkingState;
                 break;
-            case States.STALKING_STATE:
+            case States.StalkingState:
                 HandleStalking();
                 break;
-            case States.ATTACK_STATE:
+            case States.AttackState:
                 HandleAttack();
                 break;
             default:
                 break;
         }
     }
-    void HandleStalking() 
+
+    private void HandleStalking() 
     {
-        float min_distance;
-        Argenimal closest_enemy;
-        foreach (Argenimal enemy in _enemy_team) 
+
+        float minDistance = float.MaxValue;
+        Argenimal closestEnemy = _enemyTeam[0];
+        foreach (var enemy in _enemyTeam) 
         {
-            
+            float distance = Vector3.Distance(transform.position, enemy.transform.position);
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                closestEnemy = enemy;
+            }
         }
+        
+        // TODO set check based on attack range
+        if (minDistance < minRange) // Example distance to switch to attack state
+        {
+            _currentState = States.AttackState;
+            return;
+        }
+
+
+        _agent.SetDestination(closestEnemy.transform.position);
     }
+    
     void HandleAttack()
     {
 
     }
-    void HandleStun() 
+
+    private void HandleStun() 
     {
-        stunned_timer += Time.deltaTime;
-        if (stunned_timer > MAX_STUNNED_TIMER)
+        _stunnedTimer += Time.deltaTime;
+        if (_stunnedTimer > MaxStunnedTimer)
         {
-            stunned = false;
-            stunned_timer = 0.0f;
+            _stunned = false;
+            _stunnedTimer = 0.0f;
         }
         else
         {

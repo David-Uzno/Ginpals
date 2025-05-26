@@ -1,25 +1,36 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Argenimal : MonoBehaviour
 {
     public int health;
+    public NavMeshAgent agent;
 
-    Argenimal[] enemy_team;
 
-    public void StartCombat(Argenimal[] _enemy_team) 
+    private StateMachine _stateMachine;
+
+    public Argenimal[] _enemyTeam;
+
+    
+    public void StartCombat() 
     {
-        //TODO
+        _stateMachine.Setup(_enemyTeam, agent);
         return;
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
         
+        _stateMachine = gameObject.AddComponent<StateMachine>();
+        StartCombat();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        _stateMachine.ProcessStates();
         
     }
 }
