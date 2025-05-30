@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 using Debug = System.Diagnostics.Debug;
@@ -6,6 +7,10 @@ public class StateMachine : MonoBehaviour
 {
     private Argenimal[] _enemyTeam;
     private NavMeshAgent _agent;
+    private Action<Argenimal> _attackCallback;
+    
+    [SerializeField]
+    private Argenimal _target;
     public enum States
     {
         IdleState,
@@ -15,18 +20,25 @@ public class StateMachine : MonoBehaviour
 
     private bool _stunned = false;
     private bool _dead = false;
+  
 
     public States _currentState = States.IdleState;
-    public float minRange = 0.1f;
+    public float minRange = 0.5f;
 
     private float _stunnedTimer;
 
     private const float MaxStunnedTimer = 3.0f;
+
+    public void Die()
+    {
+        _dead = true;
+    }
     
-    public void Setup(Argenimal[] enemyTeam, NavMeshAgent agent)
+    public void Setup(Argenimal[] enemyTeam, NavMeshAgent agent, Action<Argenimal> AttackCallback)
     {
         _enemyTeam = enemyTeam;
         _agent = agent;
+        _attackCallback = AttackCallback;
     }
 
     public void ProcessStates()
@@ -57,7 +69,7 @@ public class StateMachine : MonoBehaviour
         foreach (var enemy in _enemyTeam) 
         {
             float distance = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distance < minDistance)
+            if (distance < minDistance && !enemy.IsDead())
             {
                 minDistance = distance;
                 closestEnemy = enemy;
@@ -65,19 +77,21 @@ public class StateMachine : MonoBehaviour
         }
         
         // TODO set check based on attack range
-        if (minDistance < minRange) // Example distance to switch to attack state
+        if (minDistance < minRange && !closestEnemy.IsDead()) // Example distance to switch to attack state
         {
             _currentState = States.AttackState;
+            _target = closestEnemy;
             return;
         }
 
 
         _agent.SetDestination(closestEnemy.transform.position);
+        
     }
     
     void HandleAttack()
     {
-
+        _attackCallback(_target);
     }
 
     private void HandleStun() 
