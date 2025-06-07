@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class StateMachine : MonoBehaviour
 {
@@ -30,8 +29,8 @@ public class StateMachine : MonoBehaviour
     
     private Argenimal[] _enemyTeam;
     
-    private bool _stunned = false;
-    private bool _dead = false;
+    private bool _stunned;
+    private bool _dead;
 
     public void Die()
     {
@@ -101,8 +100,8 @@ public class StateMachine : MonoBehaviour
         }
         return closestEnemy;
     }
-    
-    void HandleAttack()
+
+    private void HandleAttack()
     {
         OnAttackTriggered?.Invoke(_target);
     }
@@ -114,10 +113,6 @@ public class StateMachine : MonoBehaviour
         {
             _stunned = false;
             _stunnedTimer = 0.0f;
-        }
-        else
-        {
-            return;
         }
     }
 }

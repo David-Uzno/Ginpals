@@ -27,11 +27,10 @@ public class Argenimal : MonoBehaviour
     private void TakeDamage(int damage)
     {
         health -= damage;
-        if (health <= 0)
-        {  
-            health = 0;
-            _stateMachine.Die();
-        }
+        if (health > 0) return;
+        
+        health = 0;
+        _stateMachine.Die();
     }
     
     public void StartCombat() 
@@ -59,11 +58,10 @@ public class Argenimal : MonoBehaviour
 
     private void Attack(Argenimal target)
     {
-        if(attackTimer <= 0.0f)
-        {
-            target.TakeDamage(attackPower);
-            attackTimer = 1.0f / attackSpeed;
-        }
+        if (!(attackTimer <= 0.0f)) return;
+        
+        target.TakeDamage(attackPower);
+        attackTimer = 1.0f / attackSpeed;
 
     }
 
@@ -74,11 +72,10 @@ public class Argenimal : MonoBehaviour
     
     private void OnDestroy()
     {
-        if (_stateMachine)
-        {
-            _stateMachine.OnAttackTriggered -= Attack;
-            _stateMachine.OnTargetAcquired -= MoveToTarget;
-        }
+        if (!_stateMachine) return;
+        
+        _stateMachine.OnAttackTriggered -= Attack;
+        _stateMachine.OnTargetAcquired -= MoveToTarget;
     }
     
     
