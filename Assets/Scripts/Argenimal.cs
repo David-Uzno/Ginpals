@@ -1,4 +1,3 @@
-using Unity.Mathematics.Geometry;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,14 +8,14 @@ public class Argenimal : MonoBehaviour
     public int attackPower;
     public int attackSpeed = 1;
     public int speed;
+    public int range;
 
     
     public NavMeshAgent agent;
-    public Argenimal[] _enemyTeam;
+    public Argenimal[] enemyTeam;
     
     
     private StateMachine _stateMachine;
-    private Argenimal targetEnemy;
     private float attackTimer;
 
 
@@ -24,7 +23,8 @@ public class Argenimal : MonoBehaviour
     {
         return health == 0;
     }
-    public void TakeDamage(int damage)
+
+    private void TakeDamage(int damage)
     {
         health -= damage;
         if (health <= 0)
@@ -36,8 +36,8 @@ public class Argenimal : MonoBehaviour
     
     public void StartCombat() 
     {
-        _stateMachine.Setup(_enemyTeam, agent, Attack);
-        return;
+        _stateMachine.Setup(enemyTeam, agent);
+        _stateMachine.OnAttackTriggered += Attack;
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
@@ -61,9 +61,17 @@ public class Argenimal : MonoBehaviour
         if(attackTimer <= 0.0f)
         {
             target.TakeDamage(attackPower);
-            attackTimer = 1.0f / (float) attackSpeed;
+            attackTimer = 1.0f / attackSpeed;
         }
 
+    }
+    
+    private void OnDestroy()
+    {
+        if (_stateMachine)
+        {
+            _stateMachine.OnAttackTriggered -= Attack;
+        }
     }
     
     

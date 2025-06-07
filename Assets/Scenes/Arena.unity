@@ -5149,9 +5149,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7192815037103077305, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
+      propertyPath: enemyTeam.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7192815037103077305, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
       propertyPath: _enemyTeam.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7192815037103077305, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
+      propertyPath: 'enemyTeam.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1477770352}
     - target: {fileID: 7192815037103077305, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
       propertyPath: '_enemyTeam.Array.data[0]'
       value: 
@@ -5423,9 +5431,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7192815037103077305, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
+      propertyPath: enemyTeam.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7192815037103077305, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
       propertyPath: _enemyTeam.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7192815037103077305, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
+      propertyPath: 'enemyTeam.Array.data[0]'
+      value: 
+      objectReference: {fileID: 589846527}
     - target: {fileID: 7192815037103077305, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
       propertyPath: '_enemyTeam.Array.data[0]'
       value: 
