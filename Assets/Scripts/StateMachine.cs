@@ -12,9 +12,11 @@ public class StateMachine : MonoBehaviour
         IdleState,
         StalkingState,
         AttackState,
+        VictoryState,
     };
     
     public event Action<Argenimal> OnAttackTriggered;
+    public event Action<Argenimal> OnTargetAcquired;
     
     public States currentState = States.IdleState;
     public float minRange = 0.5f;
@@ -27,8 +29,6 @@ public class StateMachine : MonoBehaviour
     private const float MaxStunnedTimer = 3.0f;
     
     private Argenimal[] _enemyTeam;
-    private NavMeshAgent _agent;
-    private Action<Argenimal> _attackCallback;
     
     private bool _stunned = false;
     private bool _dead = false;
@@ -38,10 +38,9 @@ public class StateMachine : MonoBehaviour
         _dead = true;
     }
     
-    public void Setup(Argenimal[] enemyTeam, NavMeshAgent agent)
+    public void Setup(Argenimal[] enemyTeam)
     {
         _enemyTeam = enemyTeam;
-        _agent = agent;
     }
 
     public void ProcessStates()
@@ -59,6 +58,7 @@ public class StateMachine : MonoBehaviour
             case States.AttackState:
                 HandleAttack();
                 break;
+            case States.VictoryState:
             default:
                 break;
         }
@@ -66,10 +66,30 @@ public class StateMachine : MonoBehaviour
 
     private void HandleStalking() 
     {
+        Argenimal closestEnemy = GetClosestEnemy();
 
+        if (!closestEnemy)
+        {
+            currentState = States.VictoryState;
+            return;
+        }
+        
+        if (Vector3.Distance(transform.position, closestEnemy.transform.position) < minRange)
+        {
+            currentState = States.AttackState;
+            _target = closestEnemy;
+            return;
+        }
+
+
+        OnTargetAcquired?.Invoke(closestEnemy);
+    }
+    
+    private Argenimal GetClosestEnemy()
+    {
         float minDistance = float.MaxValue;
-        Argenimal closestEnemy = _enemyTeam[0];
-        foreach (var enemy in _enemyTeam) 
+        Argenimal closestEnemy = null;
+        foreach (var enemy in _enemyTeam)
         {
             float distance = Vector3.Distance(transform.position, enemy.transform.position);
             if (distance < minDistance && !enemy.IsDead())
@@ -78,18 +98,7 @@ public class StateMachine : MonoBehaviour
                 closestEnemy = enemy;
             }
         }
-        
-        // TODO set check based on attack range
-        if (minDistance < minRange && !closestEnemy.IsDead()) // Example distance to switch to attack state
-        {
-            currentState = States.AttackState;
-            _target = closestEnemy;
-            return;
-        }
-
-
-        _agent.SetDestination(closestEnemy.transform.position);
-        
+        return closestEnemy;
     }
     
     void HandleAttack()

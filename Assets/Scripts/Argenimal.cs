@@ -36,8 +36,9 @@ public class Argenimal : MonoBehaviour
     
     public void StartCombat() 
     {
-        _stateMachine.Setup(enemyTeam, agent);
+        _stateMachine.Setup(enemyTeam);
         _stateMachine.OnAttackTriggered += Attack;
+        _stateMachine.OnTargetAcquired += MoveToTarget;
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
@@ -65,12 +66,18 @@ public class Argenimal : MonoBehaviour
         }
 
     }
+
+    private void MoveToTarget(Argenimal target)
+    {
+        agent.SetDestination(target.transform.position);
+    }
     
     private void OnDestroy()
     {
         if (_stateMachine)
         {
             _stateMachine.OnAttackTriggered -= Attack;
+            _stateMachine.OnTargetAcquired -= MoveToTarget;
         }
     }
     
