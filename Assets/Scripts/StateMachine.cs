@@ -38,9 +38,10 @@ public class StateMachine : MonoBehaviour
         _dead = true;
     }
     
-    public void Setup(Argenimal[] enemyTeam)
+    public void Setup(Argenimal[] enemyTeam, float attackRange)
     {
         _enemyTeam = enemyTeam;
+        minRange = attackRange;
     }
 
     public void ProcessStates()

@@ -8,7 +8,7 @@ public class Argenimal : MonoBehaviour
     public int attackPower;
     public int attackSpeed = 1;
     public int speed;
-    public int range;
+    public float range = 0.5f;
 
     
     public NavMeshAgent agent;
@@ -36,7 +36,7 @@ public class Argenimal : MonoBehaviour
     
     public void StartCombat() 
     {
-        _stateMachine.Setup(enemyTeam);
+        _stateMachine.Setup(enemyTeam, range);
         _stateMachine.OnAttackTriggered += Attack;
         _stateMachine.OnTargetAcquired += MoveToTarget;
     }
