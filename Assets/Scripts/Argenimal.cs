@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public class Argenimal : MonoBehaviour
 {
-   
+    public int maxHealth;
     public int health;
     public int attackPower;
     public int attackSpeed = 1;
@@ -17,8 +17,11 @@ public class Argenimal : MonoBehaviour
     
     private StateMachine _stateMachine;
     private float attackTimer;
+    
+    private FloatingHealthBar healthBar;
 
-
+    [SerializeField] private Transform bullet;
+    
     public bool IsDead()
     {
         return health == 0;
@@ -27,6 +30,7 @@ public class Argenimal : MonoBehaviour
     private void TakeDamage(int damage)
     {
         health -= damage;
+        healthBar.UpdateHealthBar(health, maxHealth);
         if (health > 0) return;
         
         health = 0;
@@ -46,6 +50,7 @@ public class Argenimal : MonoBehaviour
         agent.updateUpAxis = false;
         
         _stateMachine = gameObject.AddComponent<StateMachine>();
+        healthBar = gameObject.GetComponentInChildren<FloatingHealthBar>();
         StartCombat();
     }
 
@@ -59,8 +64,12 @@ public class Argenimal : MonoBehaviour
     private void Attack(Argenimal target)
     {
         if (!(attackTimer <= 0.0f)) return;
-        
+        //Spawns bullet in center of the critter
+        Transform bulletTransform = Instantiate(bullet,transform.position,Quaternion.identity);
+        Vector3 shootDir = (target.transform.position - transform.position).normalized;
+        bulletTransform.GetComponent<Bullet>().Setup(shootDir);
         target.TakeDamage(attackPower);
+        
         attackTimer = 1.0f / attackSpeed;
 
     }
