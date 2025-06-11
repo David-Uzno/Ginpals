@@ -31,6 +31,7 @@ public class StateMachine : MonoBehaviour
     
     private bool _stunned;
     private bool _dead;
+    private bool _inCombat;
 
     public void Die()
     {
@@ -41,12 +42,14 @@ public class StateMachine : MonoBehaviour
     {
         _enemyTeam = enemyTeam;
         minRange = attackRange;
+        _inCombat = true;
     }
 
     public void ProcessStates()
     {
         if (_dead) { return; }
         if (_stunned) { HandleStun(); }
+        if(!_inCombat){return;}
         switch (currentState)
         {
             case States.IdleState:

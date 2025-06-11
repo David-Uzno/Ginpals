@@ -54,14 +54,14 @@ public class Argenimal : MonoBehaviour
         _stateMachine.OnTargetAcquired += MoveToTarget;
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private void Start()
+    private void Awake()
     {
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         
         _stateMachine = gameObject.AddComponent<StateMachine>();
         healthBar = gameObject.GetComponentInChildren<FloatingHealthBar>();
-        StartCombat();
+        //StartCombat();
     }
 
     // Update is called once per frame
