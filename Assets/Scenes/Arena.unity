@@ -5150,7 +5150,7 @@ PrefabInstance:
       objectReference: {fileID: 745281222233168866, guid: 585e6caf6f3870e45ab48d413a22554e, type: 3}
     - target: {fileID: 7192815037103077305, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
       propertyPath: range
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7192815037103077305, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
       propertyPath: speed
@@ -5525,7 +5525,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7192815037103077305, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
       propertyPath: range
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7192815037103077305, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
       propertyPath: speed

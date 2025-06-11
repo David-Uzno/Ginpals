@@ -13,7 +13,7 @@ public class Bullet : MonoBehaviour
        
         this._shootDir = shootDir;
 
-        Destroy(gameObject, 3.0f);
+        Destroy(gameObject, 2.0f);
     }
 
 
