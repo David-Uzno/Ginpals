@@ -103,6 +103,11 @@ public class StateMachine : MonoBehaviour
 
     private void HandleAttack()
     {
+        if (_target == null || _target.IsDead())
+        {
+            currentState = States.StalkingState;
+            return;
+        }
         OnAttackTriggered?.Invoke(_target);
     }
 

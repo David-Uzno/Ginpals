@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CombatManager : MonoBehaviour
 {
-    enum Teams{
+    public enum Teams{
         AlliedTeam,
         EnemyTeam
     }
@@ -19,8 +19,15 @@ public class CombatManager : MonoBehaviour
     }
     void CombatStarted(Argenimal[] alliedTeam, Argenimal[] enemyTeam) 
     {
-        foreach (Argenimal animal in alliedTeam) { animal.StartCombat(); }
-        foreach (Argenimal animal in enemyTeam) { animal.StartCombat(); }
+        foreach (Argenimal animal in alliedTeam)
+        {
+            animal.team = Teams.AlliedTeam;
+            animal.StartCombat();
+        }
+        foreach (Argenimal animal in enemyTeam) {
+            animal.team = Teams.EnemyTeam;
+            animal.StartCombat(); 
+        }
     }
 
     // Update is called once per frame

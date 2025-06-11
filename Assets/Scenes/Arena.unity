@@ -5092,6 +5092,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1632845414516857539, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.47
+      objectReference: {fileID: 0}
     - target: {fileID: 2577431117642208387, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -5150,7 +5154,7 @@ PrefabInstance:
       objectReference: {fileID: 745281222233168866, guid: 585e6caf6f3870e45ab48d413a22554e, type: 3}
     - target: {fileID: 7192815037103077305, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
       propertyPath: range
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7192815037103077305, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
       propertyPath: speed
@@ -5159,7 +5163,7 @@ PrefabInstance:
     - target: {fileID: 7192815037103077305, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
       propertyPath: bullet
       value: 
-      objectReference: {fileID: 9176873847129203783, guid: f620c05a43a8983419cc845ee1237542, type: 3}
+      objectReference: {fileID: 6122381075087909411, guid: 9aef1b8bec54d2144add6ebb454a6088, type: 3}
     - target: {fileID: 7192815037103077305, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
       propertyPath: health
       value: 60
@@ -5167,6 +5171,10 @@ PrefabInstance:
     - target: {fileID: 7192815037103077305, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
       propertyPath: maxHealth
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 7192815037103077305, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
+      propertyPath: attackType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7192815037103077305, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
       propertyPath: attackPower
@@ -5394,67 +5402,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!1001 &116718338079925043
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3303395661225199343, guid: f620c05a43a8983419cc845ee1237542, type: 3}
-      propertyPath: m_Name
-      value: Bullet
-      objectReference: {fileID: 0}
-    - target: {fileID: 7590028522738414731, guid: f620c05a43a8983419cc845ee1237542, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9176873847129203783, guid: f620c05a43a8983419cc845ee1237542, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.88
-      objectReference: {fileID: 0}
-    - target: {fileID: 9176873847129203783, guid: f620c05a43a8983419cc845ee1237542, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.28
-      objectReference: {fileID: 0}
-    - target: {fileID: 9176873847129203783, guid: f620c05a43a8983419cc845ee1237542, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9176873847129203783, guid: f620c05a43a8983419cc845ee1237542, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9176873847129203783, guid: f620c05a43a8983419cc845ee1237542, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9176873847129203783, guid: f620c05a43a8983419cc845ee1237542, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9176873847129203783, guid: f620c05a43a8983419cc845ee1237542, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9176873847129203783, guid: f620c05a43a8983419cc845ee1237542, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9176873847129203783, guid: f620c05a43a8983419cc845ee1237542, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9176873847129203783, guid: f620c05a43a8983419cc845ee1237542, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f620c05a43a8983419cc845ee1237542, type: 3}
 --- !u!1001 &669904016070833481
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5524,8 +5471,12 @@ PrefabInstance:
       value: TestPokemon
       objectReference: {fileID: 0}
     - target: {fileID: 7192815037103077305, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
-      propertyPath: range
+      propertyPath: team
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7192815037103077305, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
+      propertyPath: range
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7192815037103077305, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
       propertyPath: speed
@@ -5534,7 +5485,7 @@ PrefabInstance:
     - target: {fileID: 7192815037103077305, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
       propertyPath: bullet
       value: 
-      objectReference: {fileID: 9176873847129203783, guid: f620c05a43a8983419cc845ee1237542, type: 3}
+      objectReference: {fileID: 6122381075087909411, guid: 9aef1b8bec54d2144add6ebb454a6088, type: 3}
     - target: {fileID: 7192815037103077305, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
       propertyPath: health
       value: 50
@@ -5542,6 +5493,10 @@ PrefabInstance:
     - target: {fileID: 7192815037103077305, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
       propertyPath: maxHealth
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7192815037103077305, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
+      propertyPath: attackType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7192815037103077305, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
       propertyPath: attackPower
@@ -5585,4 +5540,3 @@ SceneRoots:
   - {fileID: 1686540701}
   - {fileID: 669904016070833481}
   - {fileID: 1396735451}
-  - {fileID: 116718338079925043}
