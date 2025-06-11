@@ -23,8 +23,9 @@ public class Bullet : MonoBehaviour
         Argenimal target = collision.GetComponent<Argenimal>();
         if (target != null && target.team != _bulletTeam)
         {
-            Destroy(this.gameObject);
             target.TakeDamage(_damage);
+            Destroy(this.gameObject);
+            
         }
     }
     // Update is called once per frame

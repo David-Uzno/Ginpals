@@ -5092,6 +5092,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 48269590127311702, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 48269590127311702, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1632845414516857539, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 0.47
@@ -5416,6 +5424,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 48269590127311702, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 48269590127311702, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 48269590127311702, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}
+      propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2577431117642208387, guid: c9b5c8bc0afa7494a960b7d71edc1eb7, type: 3}

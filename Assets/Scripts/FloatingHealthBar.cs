@@ -7,12 +7,9 @@ public class FloatingHealthBar : MonoBehaviour
 
     public void UpdateHealthBar(int currentHealth, int maxHealth)
     {
+        if (currentHealth <= 0){ healthBar.value = 0;}
         healthBar.value = ((float) currentHealth) /((float) maxHealth);
     }
     
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
