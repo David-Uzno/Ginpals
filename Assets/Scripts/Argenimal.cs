@@ -89,9 +89,9 @@ public class Argenimal : MonoBehaviour
 
     }
 
-    private void MoveToTarget(Argenimal target)
+    private void MoveToTarget(Vector3 target)
     {
-        agent.SetDestination(target.transform.position);
+        agent.SetDestination(target);
     }
 
     private void RangeAttack(Argenimal target)

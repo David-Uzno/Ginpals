@@ -15,7 +15,7 @@ public class StateMachine : MonoBehaviour
     };
     
     public event Action<Argenimal> OnAttackTriggered;
-    public event Action<Argenimal> OnTargetAcquired;
+    public event Action<Vector3> OnTargetAcquired;
     
     public States currentState = States.IdleState;
     public float minRange = 0.5f;
@@ -81,11 +81,12 @@ public class StateMachine : MonoBehaviour
         {
             currentState = States.AttackState;
             _target = closestEnemy;
+            OnTargetAcquired?.Invoke(transform.position);
             return;
         }
 
 
-        OnTargetAcquired?.Invoke(closestEnemy);
+        OnTargetAcquired?.Invoke(closestEnemy.transform.position);
     }
     
     private Argenimal GetClosestEnemy()
