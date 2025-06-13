@@ -26,10 +26,12 @@ public class CombatManager : MonoBehaviour
         foreach (Argenimal animal in alliedTeam)
         {
             animal.team = Teams.AlliedTeam;
+            animal.enemyTeam = enemyTeam;
             animal.StartCombat();
         }
         foreach (Argenimal animal in enemyTeam) {
             animal.team = Teams.EnemyTeam;
+            animal.enemyTeam = alliedTeam;
             animal.StartCombat(); 
         }
     }
@@ -37,8 +39,8 @@ public class CombatManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool enemyTeamDead = enemyTeam[0].IsDead() && enemyTeam[1].IsDead() && enemyTeam[2].IsDead();
-        bool alliedTeamDead = alliedTeam[0].IsDead() && alliedTeam[1].IsDead() && alliedTeam[2].IsDead();
+        bool enemyTeamDead = enemyTeam[0].IsDead() && enemyTeam[1].IsDead();
+        bool alliedTeamDead = alliedTeam[0].IsDead() && alliedTeam[1].IsDead();
         if (alliedTeamDead && enemyTeamDead)
         {
             //empate
