@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class QualityOption : MonoBehaviour
 {
-    [SerializeField] TMP_Dropdown _dropDownQuality;
-    [SerializeField] int _quality;
+    [SerializeField] private TMP_Dropdown _dropDownQuality;
+    [SerializeField] private int _quality;
 
-    void Start()
+    private void Start()
     {
         _quality = PlayerPrefs.GetInt("QualityNumber", 3);
         _dropDownQuality.value = _quality;
