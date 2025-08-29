@@ -3,14 +3,16 @@ using UnityEngine.InputSystem;
 
 public class FPSManager : MonoBehaviour
 {
+    public static FPSManager Instance { get; private set; }
+
     #region Variables
-    [SerializeField] PlayerInput _playerInput;
-    [SerializeField] int _limitFPS = 120;
-    [SerializeField] FPSCounter _FPSCounter;
+    [SerializeField] private PlayerInput _playerInput;
+    [SerializeField] private int _limitFPS = 120;
+    [SerializeField] private FPSCounter _FPSCounter;
     #endregion
 
-    #region Singleton
-    public static FPSManager Instance { get; private set; }
+    #region Unity Methods
+    
     private void Awake()
     {
         if (Instance == null)
@@ -24,9 +26,7 @@ public class FPSManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    #endregion
 
-    #region Unity Methods
     private void Start()
     {
         Application.targetFrameRate = _limitFPS;

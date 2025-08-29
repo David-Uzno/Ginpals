@@ -1,22 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BrightnessOption : MonoBehaviour
 {
-    [SerializeField] Slider _sliderBrightness;
-    [SerializeField] Image _panelBrightness;
+    [SerializeField] private Slider _sliderBrightness;
+    [SerializeField] private Image _panelBrightness;
 
-    [SerializeField] float _valueBrightness;
+    [SerializeField] private float _valueBrightness;
 
-    void Start()
+    private void Start()
     {
         _sliderBrightness.value = PlayerPrefs.GetFloat("Brightness", 5);
         _valueBrightness = _sliderBrightness.value;
     }
 
-    void Update()
+    private void Update()
     {
         // Oscurecer.
         if (_valueBrightness < 5)
