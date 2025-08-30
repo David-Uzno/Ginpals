@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 public class CombatManager : MonoBehaviour
 {
     public enum Teams
@@ -8,9 +9,12 @@ public class CombatManager : MonoBehaviour
         EnemyTeam
     }
 
+    [Header("Combat")]
     public Argenimal[] alliedTeam = new Argenimal[3];
     public Argenimal[] enemyTeam = new Argenimal[3];
 
+    [Header("UI")]
+    [SerializeField] private GameObject _winnerUI;
     public GameObject text;
     private TextMeshProUGUI textWin;
 
@@ -19,8 +23,8 @@ public class CombatManager : MonoBehaviour
         CombatStarted(alliedTeam, enemyTeam);
         textWin = text.GetComponent<TextMeshProUGUI>();
     }
-    
-    void CombatStarted(Argenimal[] alliedTeam, Argenimal[] enemyTeam) 
+
+    private void CombatStarted(Argenimal[] alliedTeam, Argenimal[] enemyTeam)
     {
         foreach (Argenimal animal in alliedTeam)
         {
@@ -32,26 +36,35 @@ public class CombatManager : MonoBehaviour
         {
             animal.team = Teams.EnemyTeam;
             animal.enemyTeam = alliedTeam;
-            animal.StartCombat(); 
+            animal.StartCombat();
         }
     }
 
-    void Update()
+    private void Update()
     {
         bool enemyTeamDead = enemyTeam[0].IsDead() && enemyTeam[1].IsDead();
         bool alliedTeamDead = alliedTeam[0].IsDead() && alliedTeam[1].IsDead();
 
         if (alliedTeamDead && enemyTeamDead)
         {
-            textWin.text = "Empate!";
+            textWin.text = "EMPATE";
         }
         else if (alliedTeamDead)
         {
-            textWin.text = "Perdiste!";
+            textWin.text = "DERROTA";
         }
         else if (enemyTeamDead)
         {
-            textWin.text = "Ganaste!";
+            textWin.text = "VICTORIA";
+            if (_winnerUI != null)
+            {
+                _winnerUI.SetActive(true);
+            }
         }
+    }
+
+    public void Overworld()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 }
