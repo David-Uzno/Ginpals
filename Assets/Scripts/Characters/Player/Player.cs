@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float _walkSpeed = 4f;
     [SerializeField] private float _runSpeed = 6f;
-    [SerializeField] private byte _stepDistance = 1;
+    [SerializeField] private float _stepDistance = 0.5f;
     [SerializeField] private LayerMask _solidObjectsLayer;
     private bool _isMoving;
 
